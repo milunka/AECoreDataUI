@@ -44,7 +44,7 @@ import UIKit
 open class CoreDataTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     /// The controller *(this class fetches nothing if this is not set)*.
-    open var fetchedResultsController: NSFetchedResultsController<AnyObject>? {
+    open var fetchedResultsController: NSFetchedResultsController<NSManagedObject>? {
         didSet {
             if let frc = fetchedResultsController {
                 if frc != oldValue {
@@ -106,7 +106,7 @@ open class CoreDataTableViewController: UITableViewController, NSFetchedResultsC
             if newValue == true {
                 _suspendAutomaticTrackingOfChangesInManagedObjectContext = true
             } else {
-                DispatchQueue.main.asyncAfter(deadline: 0, execute: { self._suspendAutomaticTrackingOfChangesInManagedObjectContext = false })
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now(), execute: { self._suspendAutomaticTrackingOfChangesInManagedObjectContext = false })
             }
         }
     }
@@ -270,7 +270,7 @@ open class CoreDataTableViewController: UITableViewController, NSFetchedResultsC
 open class CoreDataCollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate {
     
     /// The controller *(this class fetches nothing if this is not set)*.
-    open var fetchedResultsController: NSFetchedResultsController<AnyObject>? {
+    open var fetchedResultsController: NSFetchedResultsController<NSManagedObject>? {
         didSet {
             if let frc = fetchedResultsController {
                 if frc != oldValue {
@@ -332,7 +332,7 @@ open class CoreDataCollectionViewController: UICollectionViewController, NSFetch
             if newValue == true {
                 _suspendAutomaticTrackingOfChangesInManagedObjectContext = true
             } else {
-                DispatchQueue.main.asyncAfter(deadline: 0, execute: { self._suspendAutomaticTrackingOfChangesInManagedObjectContext = false })
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now(), execute: { self._suspendAutomaticTrackingOfChangesInManagedObjectContext = false })
             }
         }
     }
